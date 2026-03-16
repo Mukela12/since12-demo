@@ -1,0 +1,32 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400;500;700;800&f[]=general-sans@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..800&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: 'Recursive', system-ui, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--bg-base);
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+}
+
+@layer components {
+  .font-space-mono { font-family: 'Space Mono', monospace; }
+  .font-instrument-serif { font-family: 'Instrument Serif', serif; }
+  .font-recursive { font-family: 'Recursive', system-ui, sans-serif; }
+  .font-cabinet { font-family: 'Cabinet Grotesk', system-ui, sans-serif; }
+  .font-general { font-family: 'General Sans', system-ui, sans-serif; }
+  .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+}

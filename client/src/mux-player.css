@@ -1,0 +1,21 @@
+/* Brutalist Mux Player Overrides */
+mux-player {
+  --media-primary-color: #000;
+  --media-secondary-color: transparent;
+  --media-accent-color: #FF6B6B;
+  --media-control-background: transparent;
+  --media-range-thumb-background: #FF6B6B;
+  --media-range-bar-color: #FF6B6B;
+  --media-control-hover-background: rgba(255, 107, 107, 0.15);
+  --media-font-family: 'Space Mono', monospace;
+  --media-background-color: #000;
+  --seek-backward-button: none;
+  --seek-forward-button: none;
+  --rendition-selectmenu: none;
+  aspect-ratio: 16 / 9;
+}
+
+mux-player::part(bottom) {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  padding: 12px 16px;
+}

@@ -1,0 +1,272 @@
+/* ── CSS Custom Properties (outside layers — variables don't cascade) ── */
+:root {
+  /* ── Base palette ── */
+  --bg-base: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #FFF8F0;
+  --bg-cream: #FAF5ED;
+  --bg-muted: #F0ECE4;
+
+  /* ── Sidebar (dark) ── */
+  --sidebar-bg: #0A0A0A;
+  --sidebar-text: #A0A0A0;
+  --sidebar-text-active: #FFFFFF;
+  --sidebar-hover: #1A1A1A;
+  --sidebar-accent: #FF6B6B;
+  --sidebar-border: #1F1F1F;
+
+  /* ── Accents ── */
+  --accent-coral: #FF6B6B;
+  --accent-yellow: #FFCC00;
+  --accent-green: #22C55E;
+  --accent-blue: #3B82F6;
+  --accent-black: #000000;
+
+  /* ── Borders ── */
+  --border-default: #000000;
+  --border-light: #E5E5E0;
+  --border-width: 3px;
+
+  /* ── Text ── */
+  --text-primary: #000000;
+  --text-secondary: #444444;
+  --text-muted: #999999;
+
+  /* ── Shadows (brutalist hard offset — never blurred) ── */
+  --shadow-hard: 4px 4px 0px #000000;
+  --shadow-hard-sm: 2px 2px 0px #000000;
+  --shadow-hard-lg: 6px 6px 0px #000000;
+}
+
+/* ── Keyframes (outside layers — global scope) ── */
+@keyframes clip-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes countFlip {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+/* ── All themed components ── */
+@layer components {
+
+  /* ── Cards ── */
+  .card-brutal {
+    border: 3px solid var(--border-default);
+    box-shadow: var(--shadow-hard);
+    background: var(--bg-surface);
+    transition: box-shadow 120ms ease-out, transform 120ms ease-out;
+  }
+  .card-brutal:hover {
+    box-shadow: var(--shadow-hard-lg);
+    transform: translate(-2px, -2px);
+  }
+
+  /* ── Buttons ── */
+  .btn-brutal {
+    border: 3px solid var(--border-default);
+    box-shadow: var(--shadow-hard);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 80ms ease-out;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+  }
+  .btn-brutal:hover {
+    box-shadow: 5px 5px 0px #000;
+    transform: translate(-1px, -1px);
+  }
+  .btn-brutal:active {
+    box-shadow: 0 0 0 transparent;
+    transform: translate(4px, 4px);
+  }
+  .btn-brutal--yellow {
+    background: var(--accent-yellow);
+    color: #000;
+  }
+  .btn-brutal--coral {
+    background: var(--accent-coral);
+    color: #fff;
+  }
+  .btn-brutal--black {
+    background: #000;
+    color: #fff;
+  }
+
+  /* ── Badges ── */
+  .brutal-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border: 2px solid var(--border-default);
+    display: inline-block;
+    line-height: 1.4;
+  }
+  .brutal-badge--coral {
+    background: var(--accent-coral);
+    color: #fff;
+    border-color: var(--accent-coral);
+  }
+  .brutal-badge--yellow {
+    background: var(--accent-yellow);
+    color: #000;
+    border-color: #000;
+  }
+  .brutal-badge--black {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+  .brutal-badge--green {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: var(--accent-green);
+  }
+
+  /* ── Stickers ── */
+  .sticker {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    border: 2px solid var(--border-default);
+    box-shadow: var(--shadow-hard-sm);
+    background: var(--bg-surface);
+  }
+  .sticker--rot-pos { transform: rotate(1.5deg); }
+  .sticker--rot-neg { transform: rotate(-1.5deg); }
+
+  /* ── Tabs ── */
+  .brutal-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 8px 16px;
+    border: 3px solid var(--border-default);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 80ms ease-out;
+  }
+  .brutal-tab--active {
+    background: #000;
+    color: #fff;
+    box-shadow: var(--shadow-hard-sm);
+  }
+
+  /* ── Ticker ── */
+  .ticker {
+    background: var(--accent-yellow);
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 6px 0;
+  }
+  .ticker-content {
+    display: inline-block;
+    animation: marquee 40s linear infinite;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Divider ── */
+  .rule-thick {
+    border-top: 3px solid var(--border-default);
+  }
+
+  /* ── Progress bar ── */
+  .brutal-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-muted);
+    border: 1px solid var(--border-default);
+  }
+  .brutal-progress__fill {
+    height: 100%;
+    background: var(--accent-black);
+    transition: width 500ms ease-out;
+  }
+  .brutal-progress__fill--coral {
+    background: var(--accent-coral);
+  }
+  .brutal-progress__fill--yellow {
+    background: var(--accent-yellow);
+  }
+
+  /* ── Page reveal ── */
+  .page-reveal {
+    animation: clip-reveal 400ms ease-out;
+  }
+
+  /* ── Section header ── */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--border-default);
+    margin-bottom: 20px;
+  }
+
+  /* ── Stripe rows ── */
+  .stripe-even:nth-child(even) {
+    background: var(--bg-elevated);
+  }
+
+  /* ── Input brutal ── */
+  .input-brutal {
+    border: 3px solid var(--border-default);
+    padding: 10px 14px;
+    font-family: 'Recursive', system-ui, sans-serif;
+    font-size: 14px;
+    background: var(--bg-surface);
+    outline: none;
+    width: 100%;
+    transition: box-shadow 80ms ease-out;
+  }
+  .input-brutal:focus {
+    box-shadow: var(--shadow-hard-sm);
+  }
+  .input-brutal::placeholder {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+}
