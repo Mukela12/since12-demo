@@ -15,22 +15,23 @@ export default function Watch() {
 
   return (
     <div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 0, minHeight: 'calc(100vh - 160px)' }}>
+      <div className="watch-layout">
         {/* Left column — player + info */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="watch-player-col">
           <StreamPlayer
             playbackId={stream.playbackId}
             title={stream.title}
             isLive={stream.status === 'live'}
             viewerCount={stream.viewerCount}
+            size="sm"
           />
 
           {/* Stream info */}
-          <div style={{ padding: '16px 0' }}>
-            <h1 className="font-instrument-serif" style={{ fontSize: 22, marginBottom: 12 }}>
+          <div style={{ padding: '12px 0' }}>
+            <h1 className="font-instrument-serif" style={{ fontSize: 20, marginBottom: 10, lineHeight: 1.2 }}>
               {stream.title}
             </h1>
-            <div className="flex items-center justify-between" style={{ flexWrap: 'wrap', gap: 12 }}>
+            <div className="flex items-center justify-between" style={{ flexWrap: 'wrap', gap: 10 }}>
               <CreatorCard creator={stream.creator} />
               <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
                 <span className="sticker">{stream.category}</span>
@@ -43,28 +44,28 @@ export default function Watch() {
 
           {/* Drop overlay — shown during live drops */}
           {drop && stream.status === 'live' && (
-            <div className="card-brutal" style={{ padding: 0, marginTop: 16, overflow: 'hidden' }}>
-              <div style={{ padding: '10px 14px', borderBottom: '3px solid #000', background: 'var(--accent-coral)' }}>
-                <span className="font-space-mono" style={{ fontSize: 11, fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>
+            <div className="card-brutal" style={{ padding: 0, overflow: 'hidden' }}>
+              <div style={{ padding: '8px 12px', borderBottom: '3px solid #000', background: 'var(--accent-coral)' }}>
+                <span className="font-space-mono" style={{ fontSize: 10, fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>
                   DROP ACTIVE — BUY NOW
                 </span>
               </div>
-              <div style={{ display: 'flex', gap: 16, padding: 16, alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: 12, padding: 12, alignItems: 'center' }}>
                 <img
                   src={drop.imageUrl}
                   alt={drop.title}
-                  style={{ width: 80, height: 80, objectFit: 'cover', border: '2px solid #000', flexShrink: 0 }}
+                  style={{ width: 64, height: 64, objectFit: 'cover', border: '2px solid #000', flexShrink: 0 }}
                 />
-                <div style={{ flex: 1 }}>
-                  <div className="font-instrument-serif" style={{ fontSize: 16, marginBottom: 4 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="font-instrument-serif" style={{ fontSize: 14, marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {drop.title}
                   </div>
-                  <div className="font-space-mono" style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>
+                  <div className="font-space-mono" style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>
                     ${drop.price}
                   </div>
                   <InventoryBar remaining={inventory.remaining} total={inventory.total} percentage={inventory.percentage} />
                 </div>
-                <button className="btn-brutal btn-brutal--coral" style={{ flexShrink: 0, padding: '12px 24px' }}>
+                <button className="btn-brutal btn-brutal--coral" style={{ flexShrink: 0, padding: '10px 18px', fontSize: 10 }}>
                   BUY NOW
                 </button>
               </div>
@@ -73,18 +74,35 @@ export default function Watch() {
         </div>
 
         {/* Right column — chat */}
-        <div style={{ borderLeft: '3px solid #000', marginLeft: -1 }}>
+        <div className="watch-chat-col">
           <ChatPanel />
         </div>
       </div>
 
       <style>{`
+        .watch-layout {
+          display: grid;
+          grid-template-columns: 1fr 320px;
+          gap: 0;
+          height: calc(100vh - 100px);
+        }
+        .watch-player-col {
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          padding-right: 0;
+        }
+        .watch-chat-col {
+          border-left: 3px solid #000;
+          overflow: hidden;
+        }
         @media (max-width: 900px) {
-          div[style*="gridTemplateColumns: '1fr 340px'"] {
-            grid-template-columns: 1fr !important;
+          .watch-layout {
+            grid-template-columns: 1fr;
+            height: auto;
           }
-          div[style*="borderLeft: '3px solid #000'"] {
-            border-left: none !important;
+          .watch-chat-col {
+            border-left: none;
             border-top: 3px solid #000;
             height: 400px;
           }

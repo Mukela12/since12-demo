@@ -14,7 +14,7 @@ export default function Since12Layout() {
   const location = useLocation();
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', overflow: 'hidden', maxWidth: '100vw' }}>
       {/* Dark sidebar — desktop */}
       <aside className="sidebar-desktop" style={{
         width: 72,
@@ -90,9 +90,9 @@ export default function Since12Layout() {
       </aside>
 
       {/* Main content area */}
-      <div style={{ flex: 1, marginLeft: 72, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div style={{ flex: 1, marginLeft: 72, display: 'flex', flexDirection: 'column', minHeight: '100vh', overflowX: 'hidden', width: 'calc(100vw - 72px)' }}>
         <TickerBar />
-        <main className="page-reveal" style={{ flex: 1, padding: '24px 32px', maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+        <main className="page-reveal" style={{ flex: 1, padding: '16px 24px', maxWidth: 1100, width: '100%', margin: '0 auto' }}>
           <Outlet />
         </main>
       </div>

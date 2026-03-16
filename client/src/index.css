@@ -7,13 +7,14 @@
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; }
   body {
     font-family: 'Recursive', system-ui, sans-serif;
     min-height: 100vh;
     margin: 0;
     background: var(--bg-base);
     color: var(--text-primary);
+    overflow-x: hidden;
   }
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
