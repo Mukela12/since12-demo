@@ -4,7 +4,7 @@ A brutalist-designed creator platform demo combining **livestreaming**, **exclus
 
 ## Live Demo
 
-- **Frontend**: [Deployed on Netlify](#) _(link updated after deploy)_
+- **Frontend**: [https://since12-demo.netlify.app](https://since12-demo.netlify.app)
 - **Login**: `/login` — click "LOG IN" to enter (no auth required for demo)
 
 ## Screenshots
